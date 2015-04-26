@@ -12,7 +12,7 @@
 
 <t:body-container title="Track IT - Home">
     
-    <t:nav-bar iconClass="glyphicon glyphicon-home" username="${login.username}" />
+    <t:nav-bar iconClass="glyphicon glyphicon-home" username="${username}" />
     
 
     <div class='container-fluid text-center'>
@@ -50,7 +50,7 @@
 
     <div class="container-fluid">
 
-        <div class="col-md-2"></div>
+        <div class="col-md-4"></div>
 
         <div class="col-md-4">
 
@@ -68,11 +68,7 @@
                 <tr>
                     <td>${user.username}</td>
                     <td><a href="mailto:${user.email}">${user.email}</a></td>
-                    <fmt:parseDate value="${user.lastLogin}"
-                                   pattern="yyyy-MM-dd"
-                                   var="parsedDate"
-                                   type="date" />
-                    <fmt:formatDate value="${parsedDate}" 
+                    <fmt:formatDate value="${user.lastLogin}" 
                                     var="lastLoginFormatted"  
                                     type="date" 
                                     pattern="MM/dd/yyyy" />
@@ -80,47 +76,23 @@
                 </tr>
                 </c:forEach>
                 
-            </table>
-             
-        </div>
-
-        <div class="col-md-4">
-
-            <h4>Latest Items <small><a href="${cp}/inventory">View Inventory</a></small></h4>
-
-            <table  class="table table-condensed">
-                
                 <tr>
-                    <th>Make</th>
-                    <th>Model</th>
-                    <th>Type</th>
-                    <th>Quantity</th>
-                    <th>Entered</th>
+                    <th>Item Type</th>
+                    <th>Parent Dept.</th>
+                    <th>Date Received</th>
                 </tr> 
                 
                 <c:forEach items="${items}" var="item" varStatus="status">
                 <tr>
-                    <td>${item.make}</td>
-                    <td>${item.model}</td>
-                    <td>${item.type}</td>
-                    <td>${item.quantity}</td>
-                    <fmt:parseDate value="${item.dateEntered}"
-                                   pattern="yyyy-MM-dd"
-                                   var="parsedDate"
-                                   type="date"/>
-                    <fmt:formatDate value="${parsedDate}" 
-                                    var="dtEnteredFmt"  
-                                    type="date" 
-                                    pattern="MM/dd/yyyy" />
-                    <td>${dtEnteredFmt}</td>
+                    <td>${item.itemType}</td>
+                    <td>${item.getOwner()}</td>
+                    <td>${item.dateEntered}</td>
                 </tr>
                 </c:forEach>
                 
             </table>
-             
-        </div>
 
-        <div class="col-md-2"></div>
+        </div>
 
 
     </div>

@@ -1,6 +1,5 @@
 package edu.umuc.cmsc495.trackit.models;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -9,17 +8,10 @@ import java.util.Date;
  */
 public class Login {
     
-    
-    public static final int MAX_LOGIN_ATTEMPTS = 5;
-    public static final int ACCOUNT_LOCKOUT_MINUTES = 5;
-    
     private String username;
     private String password;
     private String email;
-    private int invalidLoginCount;
-    private boolean locked;
-    private LocalDate lastInvalidLogin;
-    private LocalDate lastLogin;
+    private Date lastLogin;
     
     /**
      * @param username
@@ -27,20 +19,18 @@ public class Login {
      * @param email
      * @param lastLogin
      */    
-    public Login(String username, String password, String email, LocalDate lastLogin) {
+    public Login(String username, String password, String email, Date lastLogin) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.lastLogin = lastLogin;
-        this.invalidLoginCount = 0;
-        this.locked = false;
     }
 
     /**
      * Get the last logged in date
      * @return Date
      */
-    public LocalDate getLastLogin() {
+    public Date getLastLogin() {
         return lastLogin;
     }
 
@@ -48,7 +38,7 @@ public class Login {
      * Set the last login date
      * @param lastLogin 
      */
-    public void setLastLogin(LocalDate lastLogin) {
+    public void setLastLogin(Date lastLogin) {
         this.lastLogin = lastLogin;
     }
 
@@ -108,32 +98,6 @@ public class Login {
         this.username = username;
     }
 
-    public int getInvalidLoginCount() {
-        return invalidLoginCount;
-    }
-
-    public void setInvalidLoginCount(int invalidLoginCount) {
-        this.invalidLoginCount = invalidLoginCount;
-    }
-
-    public LocalDate getLastInvalidLogin() {
-        return lastInvalidLogin;
-    }
-
-    public void setLastInvalidLogin(LocalDate lastInvalidLogin) {
-        this.lastInvalidLogin = lastInvalidLogin;
-    }
-
-    public boolean isLocked() {
-        return locked;
-    }
-
-    public void setLocked(boolean locked) {
-        this.locked = locked;
-    }
-    
-        
-
     @Override
     public String toString() {
         return String.format("Username: %s, Email: %s, Last Login: %s", 
@@ -141,8 +105,6 @@ public class Login {
                 email,
                 lastLogin);
     }
-    
-    
 
     
 }

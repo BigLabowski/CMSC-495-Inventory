@@ -1,85 +1,47 @@
 package edu.umuc.cmsc495.trackit.models;
-import java.time.LocalDate;
-import java.util.Date;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 
 public class Item {
     
     /**
      *
      */
-    public enum Type {TOWER, MONITOR, LAPTOP, PRINTER, ACCESSORY, OTHER }
+    public enum Type {TOWER, MONITOR, KEYBOARD, MOUSE, PRINTER }
     
-    private static int lastId = 0;
-    
-    private int id;
-    private Type type;
+    private final Type[] types = Type.values();
+    private final String itemType;
+    //Deleted itemName
+    private String serialNumber;
     private String make;
     private String model;
-    private String description;
-    private String serialNumber;
     private String location;
-    private Integer quantity;
     private Employee point_of_contact;
     private Department owner;
-    private LocalDate made;
-    private LocalDate dateEntered;
-    private LocalDate dateModified;
+    private final LocalDateTime dateEntered;
     
     /**
-     * @param type What type of item is it?
-     * @param make Who made it?
-     * @param model What is the name?
-     * @param made When it was made?
-     * @param description Have a description?
-     * @param serialNumber What are the digits?
-     * @param location Where is it?
-     * @param quantity How many exist?
-     * @param p_o_c Who takes care of it?
-     * @param deptOwner Which department owns it?
+     * @param item_Type
+     * @param location
+     * @param p_o_c
+     * @param dateEntered
+     * @param deptOwner
      */
-    public Item(Type type, String make, String model, LocalDate made, 
-            String description, String serialNumber, int quantity,
-            String location, Employee p_o_c, Department deptOwner) {
-        
-        // Setting the ID to the last ID +1, also incrementing last ID
-        this.id = ++lastId;
-        this.type = type;
-        this.make = make;
-        this.model = model;
-        this.made = made;
-        this.description = description;
-        this.serialNumber = serialNumber;
-        this.quantity = quantity;
+    public Item(int item_Type, String location, Employee p_o_c, int deptOwner, LocalDateTime dateEntered) {
+        this.itemType = types[item_Type].name();
         this.location = location;
         this.point_of_contact = p_o_c;
-        this.owner = deptOwner;
-        
-        this.dateEntered = LocalDate.now();
+        this.owner = new Department(deptOwner);
+        this.dateEntered = dateEntered;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-    
     
     /**
      * Get the value of itemType
      * 
      * @return the value of itemType
      */
-    public Type getType() {
-        return type;
-    }
-    public void setType(Type type) {
-        this.type = type;
+    public String getItemType() {
+        return itemType;
     }
     
     /**
@@ -177,8 +139,8 @@ public class Item {
      * 
      * @return the value of owner.getDeptName()
      */
-    public Department getOwner() {
-        return owner;
+    public String getOwner() {
+        return owner.getDeptName();
     }
     
     /**
@@ -189,44 +151,13 @@ public class Item {
     public void setOwner(Department owner) {
         this.owner = owner;
     }
-    public LocalDate getMade() {
-        return made;
-    }
-
-    public void setMade(LocalDate made) {
-        this.made = made;
-    }
-    public Integer getQuantity() {
-        return quantity;
-    }
-    
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-    
-    public String getDescription() {
-        return description;
-    }
-    
-    public void setDescription(String description) {
-        this.description = description;
-    }
     
     /**
      * Get the value of dateEntered
      * 
      * @return the value of dateEntered
      */
-    public LocalDate getDateEntered(){
+    public LocalDateTime getDateEntered(){
         return dateEntered;
-    }
-    
-    /**
-     * Get the value of dateEntered
-     * 
-     * @return the value of dateEntered
-     */
-    public LocalDate getDateModified(){
-        return dateModified;
     }
 }
