@@ -10,8 +10,11 @@ public class Employee {
 
     private String f_name;
     private String l_name;
+    private static int lastId = 0;
+    private String firstName;
+    private String lastName;
     private String phoneNumber;
-    private int ID;
+    private int id;
     private Department department;
     private Login login;
     private String email;
@@ -19,14 +22,15 @@ public class Employee {
     /**
      * @param f_name
      * @param l_name
-     * @param iD
      * @param dept
      */
-    public Employee(String f_name, String l_name, int iD, int dept) {
-        this.f_name = f_name;
-        this.l_name = l_name;
-        this.ID = iD;
-        this.department = new Department(dept);
+    public Employee(String f_name, String l_name, Department dept) {
+        
+        // Setting the ID to the last ID +1, also incrementing last ID
+        this.id = ++lastId;
+        this.firstName = f_name;
+        this.lastName = l_name;
+        this.department = dept;
     }
 
     /**
@@ -36,11 +40,11 @@ public class Employee {
      * @param dept
      * @param emailPrefix
      */
-    public Employee(String f_name, String l_name, int iD, int dept, String emailPrefix) {
+    public Employee(String f_name, String l_name, int iD, Department dept, String emailPrefix) {
         this.f_name = f_name;
         this.l_name = l_name;
-        this.ID = iD;
-        this.department = new Department(dept);
+        this.id = iD;
+        this.department = dept;
         this.email = emailPrefix + "@MGSH.com";
 
         char[] name = f_name.toCharArray();
@@ -55,17 +59,17 @@ public class Employee {
      *
      * @return the value of f_name
      */
-    public String getF_name() {
-        return f_name;
+    public String getFirstName() {
+        return firstName;
     }
 
     /**
      * Set the value of f_name
      *
-     * @param f_name new value of f_name
+     * @param firstName new value of f_name
      */
-    public void setF_name(String f_name) {
-        this.f_name = f_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     /**
@@ -73,17 +77,17 @@ public class Employee {
      *
      * @return the value of l_name
      */
-    public String getL_name() {
-        return l_name;
+    public String getLastName() {
+        return lastName;
     }
 
     /**
      * Set the value of l_name
      *
-     * @param l_name new value of l_name
+     * @param lastName new value of l_name
      */
-    public void setL_name(String l_name) {
-        this.l_name = l_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     /**
@@ -91,8 +95,8 @@ public class Employee {
      *
      * @return the value of ID
      */
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     /**
@@ -100,8 +104,8 @@ public class Employee {
      *
      * @param iD new value of ID
      */
-    public void setID(int iD) {
-        this.ID = iD;
+    public void setId(int iD) {
+        this.id = iD;
     }
 
     /**
@@ -118,8 +122,8 @@ public class Employee {
      *
      * @param dept new value of department
      */
-    public void setDepartment(int dept) {
-        this.department = new Department(dept);
+    public void setDepartment(Department dept) {
+        this.department = dept;
     }
 
     /**
@@ -160,4 +164,14 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
+
+    @Override
+    public String toString() {
+        return String.format("%s %s (Phone: %s Dept: %s)", 
+                firstName,
+                lastName,
+                phoneNumber,
+                department);
+    }
+    
 }
