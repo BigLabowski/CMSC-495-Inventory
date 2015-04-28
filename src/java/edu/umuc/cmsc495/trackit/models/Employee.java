@@ -7,14 +7,20 @@ package edu.umuc.cmsc495.trackit.models;
  * @since   
  */
 public class Employee {
+<<<<<<< HEAD
 
     private String f_name;
     private String l_name;
     private static int lastId = 0;
     private String firstName;
     private String lastName;
+=======
+    
+    private String f_name;
+    private String l_name;
+>>>>>>> 0b8ae5eaa601e726a6b7cce842dd9f95c8a6d4e1
     private String phoneNumber;
-    private int id;
+    private int ID;
     private Department department;
     private Login login;
     private String email;
@@ -22,15 +28,14 @@ public class Employee {
     /**
      * @param f_name
      * @param l_name
+     * @param iD
      * @param dept
      */
-    public Employee(String f_name, String l_name, Department dept) {
-        
-        // Setting the ID to the last ID +1, also incrementing last ID
-        this.id = ++lastId;
-        this.firstName = f_name;
-        this.lastName = l_name;
-        this.department = dept;
+    public Employee(String f_name, String l_name, int iD, int dept) {
+        this.f_name = f_name;
+        this.l_name = l_name;
+        this.ID = iD;
+        this.department = new Department(dept);
     }
 
     /**
@@ -59,17 +64,17 @@ public class Employee {
      *
      * @return the value of f_name
      */
-    public String getFirstName() {
-        return firstName;
+    public String getF_name() {
+        return f_name;
     }
 
     /**
      * Set the value of f_name
      *
-     * @param firstName new value of f_name
+     * @param f_name new value of f_name
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setF_name(String f_name) {
+        this.f_name = f_name;
     }
 
     /**
@@ -77,17 +82,17 @@ public class Employee {
      *
      * @return the value of l_name
      */
-    public String getLastName() {
-        return lastName;
+    public String getL_name() {
+        return l_name;
     }
 
     /**
      * Set the value of l_name
      *
-     * @param lastName new value of l_name
+     * @param l_name new value of l_name
      */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setL_name(String l_name) {
+        this.l_name = l_name;
     }
 
     /**
@@ -95,8 +100,8 @@ public class Employee {
      *
      * @return the value of ID
      */
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
     /**
@@ -104,8 +109,8 @@ public class Employee {
      *
      * @param iD new value of ID
      */
-    public void setId(int iD) {
-        this.id = iD;
+    public void setID(int iD) {
+        this.ID = iD;
     }
 
     /**
@@ -122,8 +127,8 @@ public class Employee {
      *
      * @param dept new value of department
      */
-    public void setDepartment(Department dept) {
-        this.department = dept;
+    public void setDepartment(int dept) {
+        this.department = new Department(dept);
     }
 
     /**
@@ -163,6 +168,7 @@ public class Employee {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+<<<<<<< HEAD
 
 
     @Override
@@ -175,3 +181,7 @@ public class Employee {
     }
     
 }
+=======
+    
+}
+>>>>>>> 0b8ae5eaa601e726a6b7cce842dd9f95c8a6d4e1
